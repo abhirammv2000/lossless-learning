@@ -7,7 +7,7 @@ A scalable, serverless platform curating the highest-quality Machine Learning ed
 * Curated resources for over 150 topics across ML mathematics, programming, and theory
 * Unified discovery of Books, YouTube videos, GitHub repositories, and articles
 * Finetuned topic summaries using custom Vertex AI RAG agent (Gemini 2.0 Flash)
-* AI-generated audio summaries available for every youtube video
+* AI-generated audio summaries available for every YouTube video
 * Full user personalization system with login, favorites, and top-liked resources
 
 Visit the live app:
@@ -26,11 +26,11 @@ https://lossless-learning-react-frontend-kbhge3in6a-uc.a.run.app/
   * Articles via Google Search API
   * Videos via YouTube Data API
   * GitHub repositories via GitHub Search API
-* **YouTube Transcripts:** Extract full transcripts per video
+* **YouTube Transcripts:** Extract full transcripts per video (run locally via `scripts/fetching_youtube_videos/fetching_transcripts.py`; no hosted transcript API was available)
 * **Topic Summarization:**
   * Custom Vertex AI Gemini 2.0 Flash RAG agent generates concise, LaTeX-formatted summaries
 * **Audio Summaries:**
-  * Text-to-speech generation of youtube video summaries to MP3 stored in GCS
+  * Text-to-speech generation of YouTube video summaries to MP3 stored in GCS
 
 ### 2. Storage and Processing
 
@@ -58,7 +58,7 @@ Each FastAPI app is a separately deployed Cloud Run service, Dockerized individu
   * Topic browsing and resource discovery
   * Autocomplete search suggestions
   * Full-text RAG-powered search across resources
-  * Watch youtube directly in-webapp
+  * Watch YouTube directly in-webapp
   * Favorite and revisit resources anytime
   * Play AI-generated audio summaries in-browser
 
@@ -81,9 +81,11 @@ Each FastAPI app is a separately deployed Cloud Run service, Dockerized individu
 | `fetching_articles` | Fetch articles from Google Search per topic |
 | `fetching_youtube_videos` | Fetch top YouTube videos per topic |
 | `fetching_github_repos` | Fetch GitHub repositories per topic |
-| `fetching_transcripts` | Fetch English transcripts for YouTube videos |
 | `generating_topic_summaries` | Generate concise topic summaries with Vertex AI |
+| `files_for_summaries` | Split video summaries into per-resource text files and build the filename/URL mapping CSV |
 | `processing_files_to_firestore` | Deduplicate and ingest resources into Firestore |
+
+> `fetching_transcripts` runs as a local script rather than a Cloud Function (see step 1).
 
 ## Deployment
 
